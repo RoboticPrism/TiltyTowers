@@ -70,4 +70,11 @@ public class Stackable : MonoBehaviour
         collider.enabled = true;
         distanceGrabbable.enabled = true;
     }
+
+    // Set this item back to its default position
+    public void Reset()
+    {
+        this.transform.position = startingPosition;
+        this.transform.rotation = startingRotation;
+    }
 }

@@ -23,10 +23,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float currentTimerSeconds = 5f;
 
+    [SerializeField]
+    private VRButton resetPlunger;
+
     // Start is called before the first frame update
     void Start()
     {
         stackables = GameObject.FindObjectsOfType<Stackable>();
+        resetPlunger = GameObject.FindObjectOfType<VRButton>();
     }
 
     // Update is called once per frame
@@ -112,5 +116,10 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         Debug.Log("Reset");
+        foreach (Stackable stackable in stackables)
+        {
+            stackable.Reset();
+        }
+        resetPlunger.Reset();
     }
 }

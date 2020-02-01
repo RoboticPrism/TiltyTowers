@@ -14,11 +14,13 @@ public class VRButton : MonoBehaviour
 
     private float distance;
 
-    protected bool pressed = false;
-    protected bool released = false;
+    private bool pressed = false;
+    private bool released = false;
 
-    protected Vector3 startPosition;
-    protected Quaternion startRotation;
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+
+    private Rigidbody rigidbody;
     private OVRGrabbable grabbable;
 
 
@@ -27,6 +29,7 @@ public class VRButton : MonoBehaviour
         // Remember start position of button
         startPosition = transform.localPosition;
         startRotation = transform.localRotation;
+        rigidbody = this.GetComponent<Rigidbody>();
         grabbable = this.GetComponent<OVRGrabbable>();
     }
 
@@ -78,5 +81,13 @@ public class VRButton : MonoBehaviour
             pressed = false;
             released = true;
         }
+    }
+
+    // Bring the button back to its default location
+    public void Reset()
+    {
+        this.transform.localPosition = startPosition;
+        // Kill all velocity too
+        rigidbody.velocity = Vector3.zero;
     }
 }
