@@ -41,6 +41,7 @@ public class OVRScreenFade : MonoBehaviour
 	private MeshFilter fadeMesh;
 	private Material fadeMaterial = null;
     private bool isFading = false;
+    private bool isTransitioning = false;
 
     public float currentAlpha { get; private set; }
 
@@ -122,6 +123,16 @@ public class OVRScreenFade : MonoBehaviour
         StartCoroutine(Fade(0,1));
     }
 
+    public void FadeIn()
+    {
+        StartCoroutine(Fade(1,0));
+    }
+
+    public bool IsTransitioning()
+    {
+        return isTransitioning;
+    }
+
 
 	/// <summary>
 	/// Starts a fade in when a new level is loaded
@@ -177,6 +188,7 @@ public class OVRScreenFade : MonoBehaviour
 	/// </summary>
 	IEnumerator Fade(float startAlpha, float endAlpha)
 	{
+        isTransitioning = true;
 		float elapsedTime = 0.0f;
 		while (elapsedTime < fadeTime)
 		{
@@ -185,6 +197,7 @@ public class OVRScreenFade : MonoBehaviour
             SetMaterialAlpha();
 			yield return new WaitForEndOfFrame();
 		}
+        isTransitioning = false;
 	}
 
     /// <summary>

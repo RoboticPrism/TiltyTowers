@@ -5,9 +5,6 @@ using UnityEngine;
 public class VRButton : MonoBehaviour
 {
     [SerializeField]
-    private GameManager gameManager;
-
-    [SerializeField]
     private float returnSpeed;
     [SerializeField]
     private float activationDistance;
@@ -23,6 +20,8 @@ public class VRButton : MonoBehaviour
     private Rigidbody rigidbody;
     private OVRGrabbable grabbable;
 
+    private GameManager gameManager;
+
 
     void Start()
     {
@@ -31,6 +30,8 @@ public class VRButton : MonoBehaviour
         startRotation = transform.localRotation;
         rigidbody = this.GetComponent<Rigidbody>();
         grabbable = this.GetComponent<OVRGrabbable>();
+
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     void Update()

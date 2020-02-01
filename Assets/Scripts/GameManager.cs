@@ -26,9 +26,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private VRButton resetPlunger;
 
+    [SerializeField]
+    private LevelLoader levelLoader;
+
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         stackables = GameObject.FindObjectsOfType<Stackable>();
         resetPlunger = GameObject.FindObjectOfType<VRButton>();
     }
@@ -106,6 +110,7 @@ public class GameManager : MonoBehaviour
         }
         currentTimerSeconds = 0f;
         currentState = GameStates.SUCCESS;
+        levelLoader.NextScene();
     }
 
     void ToFailedState()
