@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Stackable[] stackables;
 
-    enum GameStates { BUILD, EVALUATE, SUCCESS, FAILURE };
+    public enum GameStates { BUILD, EVALUATE, SUCCESS, FAILURE };
     [SerializeField]
     private GameStates currentState = GameStates.BUILD;
 
@@ -88,6 +88,11 @@ public class GameManager : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public GameStates GetCurrentGameState()
+    {
+        return currentState;
     }
 
     void ToBuildState()
