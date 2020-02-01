@@ -37,7 +37,6 @@ public class Stackable : MonoBehaviour
     {
         if (other.gameObject.GetComponent<OutOfBoundsCatcher>())
         {
-            Debug.Log("Enter collider");
             inBounds = false;
         }
     }
@@ -46,7 +45,6 @@ public class Stackable : MonoBehaviour
     {
         if (other.gameObject.GetComponent<OutOfBoundsCatcher>())
         {
-            Debug.Log("Exit collider");
             inBounds = true;
         }
     }

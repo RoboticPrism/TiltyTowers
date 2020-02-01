@@ -108,4 +108,9 @@ public class GameManager : MonoBehaviour
     {
         currentState = GameStates.FAILURE;
     }
+
+    public void Reset()
+    {
+        Debug.Log("Reset");
+    }
 }
