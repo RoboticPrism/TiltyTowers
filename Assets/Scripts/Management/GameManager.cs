@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour
         }
         currentTimerSeconds = 0f;
         currentState = GameStates.SUCCESS;
+        buildingBase.CreateSuccess();
         nextLevelButton.gameObject.SetActive(true);
     }
 
@@ -177,7 +178,10 @@ public class GameManager : MonoBehaviour
 
     public void ResetConnections()
     {
+        currentState = GameStates.BUILD;
         stackables = GameObject.FindObjectsOfType<Stackable>();
+        outOfBoundsCatcher = GameObject.FindObjectOfType<OutOfBoundsCatcher>().GetComponent<BoxCollider>();
+        
         resetPlunger = GameObject.FindObjectOfType<VRButton>();
         buildingBase = GameObject.FindObjectOfType<BuildingBase>();
         // weird hack to find inactive objects
