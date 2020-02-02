@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     private BoxCollider heightRequirementCollider;
 
     [SerializeField]
+    private Timer timer;
+
+    [SerializeField]
     private Stackable[] stackables;
 
     public enum GameStates { BUILD, EVALUATE, SUCCESS, FAILURE };
@@ -119,12 +122,14 @@ public class GameManager : MonoBehaviour
     void ToBuildState()
     {
         currentTimerSeconds = maxTimeSeconds;
+        timer.StopTimer();
         currentState = GameStates.BUILD;
     }
 
     void ToEvaluateState()
     {
         currentTimerSeconds = maxTimeSeconds;
+        timer.StartTimer();
         currentState = GameStates.EVALUATE;
     }
 
@@ -135,6 +140,7 @@ public class GameManager : MonoBehaviour
             stackable.MakeStatic();
         }
         currentTimerSeconds = 0f;
+        timer.StopTimer();
         currentState = GameStates.SUCCESS;
         buildingBase.CreateSuccess();
         nextLevelButton.gameObject.SetActive(true);
@@ -143,6 +149,7 @@ public class GameManager : MonoBehaviour
     void ToFailedState()
     {
         currentState = GameStates.FAILURE;
+        timer.StopTimer();
     }
 
     public void StartReset()
@@ -151,6 +158,8 @@ public class GameManager : MonoBehaviour
         {
             stackable.GetComponent<Rigidbody>().AddExplosionForce(explosionStrenght, buildingBase.GetExplosionPosition().position, explosionRadius, 3f);
         }
+        currentState = GameStates.BUILD;
+        timer.StopTimer();
         buildingBase.CreateExplosion();
         StartCoroutine("ResetCoroutine");
     }
@@ -181,10 +190,20 @@ public class GameManager : MonoBehaviour
         currentState = GameStates.BUILD;
         stackables = GameObject.FindObjectsOfType<Stackable>();
         outOfBoundsCatcher = GameObject.FindObjectOfType<OutOfBoundsCatcher>().GetComponent<BoxCollider>();
-        
+        timer = GameObject.FindObjectOfType<Timer>();
         resetPlunger = GameObject.FindObjectOfType<VRButton>();
         buildingBase = GameObject.FindObjectOfType<BuildingBase>();
         // weird hack to find inactive objects
         nextLevelButton = Resources.FindObjectsOfTypeAll<NextLevelButton>()[0];
+    }
+
+    public float GetMaxTimeSeconds()
+    {
+        return maxTimeSeconds;
+    }
+
+    public float GetCurrentTimeSeconds()
+    {
+        return currentTimerSeconds;
     }
 }
