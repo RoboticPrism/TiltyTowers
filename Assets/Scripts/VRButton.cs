@@ -22,6 +22,10 @@ public class VRButton : MonoBehaviour
 
     private GameManager gameManager;
 
+    [SerializeField]
+    private AudioClip plungerClip;
+    private AudioSource audioSource;
+
 
     void Start()
     {
@@ -30,6 +34,7 @@ public class VRButton : MonoBehaviour
         startRotation = transform.localRotation;
         rigidbody = this.GetComponent<Rigidbody>();
         grabbable = this.GetComponent<OVRGrabbable>();
+        audioSource = this.GetComponent<AudioSource>();
 
         gameManager = GameObject.FindObjectOfType<GameManager>();
     }
@@ -75,6 +80,7 @@ public class VRButton : MonoBehaviour
         {
             pressed = true;
             gameManager.StartReset();
+            audioSource.PlayOneShot(plungerClip);
         }
         //Dectivate unpressed button
         else if (pressComplete <= 0.2f && pressed)
