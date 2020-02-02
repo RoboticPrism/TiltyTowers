@@ -12,18 +12,18 @@ public class Stackable : MonoBehaviour
     private Rigidbody rigidbody;
     private Collider collider;
     private OVRGrabbable grabbable;
-    private OculusSampleFramework.DistanceGrabbable distanceGrabbable;
+    private DistanceGrabbable distanceGrabbable;
 
     private Vector3 startingPosition;
     private Quaternion startingRotation;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         rigidbody = this.GetComponent<Rigidbody>();
         collider = this.GetComponent<Collider>();
         grabbable = this.GetComponent<OVRGrabbable>();
-        distanceGrabbable = this.GetComponent<OculusSampleFramework.DistanceGrabbable>();
+        distanceGrabbable = this.GetComponent<DistanceGrabbable>();
 
         startingPosition = this.transform.position;
         startingRotation = this.transform.rotation;
