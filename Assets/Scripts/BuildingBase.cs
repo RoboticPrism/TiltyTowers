@@ -14,10 +14,16 @@ public class BuildingBase : MonoBehaviour
     [SerializeField]
     private GameObject successPrefab;
 
+    [SerializeField]
+    private AudioClip explosionClip;
+    [SerializeField]
+    private AudioClip successClip;
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -34,10 +40,12 @@ public class BuildingBase : MonoBehaviour
     public void CreateExplosion()
     {
         Instantiate(explosionPrefab, explosionPosition.transform.position, explosionPosition.transform.rotation);
+        audioSource.PlayOneShot(explosionClip);
     }
 
     public void CreateSuccess()
     {
         Instantiate(successPrefab, successPosition.transform.position, successPosition.transform.rotation);
+        audioSource.PlayOneShot(successClip);
     }
 }
