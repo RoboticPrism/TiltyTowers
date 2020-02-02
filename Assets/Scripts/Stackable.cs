@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stackable : MonoBehaviour
 {
     [SerializeField]
-    private bool inBounds = false;
+    private bool inBounds = true;
     [SerializeField]
     private bool inBuildZone = false;
 
