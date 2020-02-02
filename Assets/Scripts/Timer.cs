@@ -39,7 +39,10 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         image.gameObject.SetActive(false);
-        StopCoroutine(runningCoroutine);
+        if (runningCoroutine != null)
+        {
+            StopCoroutine(runningCoroutine);
+        }
     }
 
     IEnumerator timerCoroutine()
