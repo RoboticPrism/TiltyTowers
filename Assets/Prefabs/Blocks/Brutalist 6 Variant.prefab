@@ -29,40 +29,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.12, y: 0.12, z: 0.106}
   m_Center: {x: -1.3490277e-10, y: -1.6862826e-10, z: -0.007}
---- !u!114 &41985221530945589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2894150699402414695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 393f0e3c4cc9fc04488ed0933eed1827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inBounds: 1
-  inBuildZone: 0
---- !u!114 &1656944289435125485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2894150699402414695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d1a7708e76601b4ea829921c33bc624, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_allowOffhandGrab: 1
-  m_snapPosition: 0
-  m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
-  m_grabPoints: []
-  pickupClip: {fileID: 8300000, guid: 255ae011e94b5284a9d1ad4bbbfe8303, type: 3}
-  dropClip: {fileID: 8300000, guid: 06c519265339ca94484f20a3ecd1b419, type: 3}
-  m_materialColorField: 
 --- !u!82 &1617899634
 AudioSource:
   m_ObjectHideFlags: 0
@@ -160,6 +126,40 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &41985221530945589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894150699402414695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393f0e3c4cc9fc04488ed0933eed1827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inBounds: 1
+  inBuildZone: 0
+--- !u!114 &1656944289435125485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894150699402414695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1a7708e76601b4ea829921c33bc624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
+  pickupClip: {fileID: 8300000, guid: 255ae011e94b5284a9d1ad4bbbfe8303, type: 3}
+  dropClip: {fileID: 8300000, guid: 06c519265339ca94484f20a3ecd1b419, type: 3}
+  m_materialColorField: 
 --- !u!1001 &6560613999461471086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237,6 +237,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 300904480d5a0824b9dfc26db5d1f58f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 65b83ae0d4119c04096f014c16104d28, type: 2}
     - target: {fileID: -927199367670048503, guid: 300904480d5a0824b9dfc26db5d1f58f,
         type: 3}
       propertyPath: m_Name
