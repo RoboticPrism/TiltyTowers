@@ -32,6 +32,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private NextLevelButton nextLevelButton;
 
+    [SerializeField]
+    private BuildingBase buildingBase;
+
+    [SerializeField]
+    private float explosionStrenght = 10f;
+
+    [SerializeField]
+    private float explosionRadius = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -135,7 +144,16 @@ public class GameManager : MonoBehaviour
         currentState = GameStates.FAILURE;
     }
 
-    public void Reset()
+    public void StartReset()
+    {
+        foreach (Stackable stackable in stackables)
+        {
+            stackable.GetComponent<Rigidbody>().AddExplosionForce(explosionStrenght, buildingBase.GetExplosionPosition().position, explosionRadius, 3f);
+        }
+        StartCoroutine("ResetCoroutine");
+    }
+
+    void Reset()
     {
         foreach (Stackable stackable in stackables)
         {
@@ -145,10 +163,22 @@ public class GameManager : MonoBehaviour
         currentState = GameStates.BUILD;
     }
 
+    IEnumerator ResetCoroutine()
+    {
+        float delaySeconds = 2;
+        while (delaySeconds > 0f)
+        {
+            delaySeconds -= Time.deltaTime;
+            yield return null;
+        }
+        Reset();
+    }
+
     public void ResetConnections()
     {
         stackables = GameObject.FindObjectsOfType<Stackable>();
         resetPlunger = GameObject.FindObjectOfType<VRButton>();
+        buildingBase = GameObject.FindObjectOfType<BuildingBase>();
         // weird hack to find inactive objects
         nextLevelButton = Resources.FindObjectsOfTypeAll<NextLevelButton>()[0];
     }

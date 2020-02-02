@@ -74,7 +74,7 @@ public class VRButton : MonoBehaviour
         if (pressComplete >= 0.7f && !pressed)
         {
             pressed = true;
-            gameManager.Reset();
+            gameManager.StartReset();
         }
         //Dectivate unpressed button
         else if (pressComplete <= 0.2f && pressed)
