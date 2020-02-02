@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
                         isReadyToEvaluate = false;
                         break;
                     }
+                    if (!stackable.CheckInBuildZone())
+                    {
+                        isReadyToEvaluate = false;
+                        break;
+                    }
                 }
                 if (!isReadyToEvaluate)
                 {
@@ -81,6 +86,11 @@ public class GameManager : MonoBehaviour
                         break;
                     } 
                     if (!stackable.CheckInBounds())
+                    {
+                        ToFailedState();
+                        break;
+                    }
+                    if (!stackable.CheckInBuildZone())
                     {
                         ToFailedState();
                         break;

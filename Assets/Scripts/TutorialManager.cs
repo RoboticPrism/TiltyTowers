@@ -16,9 +16,6 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private GameObject completeTutorial;
 
-    [SerializeField]
-    private GameObject buildArea;
-
     enum TutorialStates { GRAB_BLOCK, PLACE_BLOCK, CONTINUE, WAIT, COMPLETE };
     [SerializeField]
     private TutorialStates currentTutorialState = TutorialStates.GRAB_BLOCK;
@@ -45,11 +42,19 @@ public class TutorialManager : MonoBehaviour
                     if (stackable.CheckIfGrabbed())
                     {
                         StartPlaceTutorial();
+                        break;
                     }
                 }
                 break;
             case TutorialStates.PLACE_BLOCK:
-                // TODO: Check how close to buildArea
+                foreach (Stackable stackable in stackables)
+                {
+                    if (stackable.CheckInBuildZone() && !stackable.CheckIfGrabbed())
+                    {
+                        StartContinueTutorial();
+                        break;
+                    }
+                }
                 break;
             case TutorialStates.CONTINUE:
                 if (gameManager.GetCurrentGameState() == GameManager.GameStates.EVALUATE)
@@ -71,24 +76,28 @@ public class TutorialManager : MonoBehaviour
     {
         grabBlockTutorial.SetActive(false);
         placeBlockTutorial.SetActive(true);
+        currentTutorialState = TutorialStates.PLACE_BLOCK;
     }
 
     public void StartContinueTutorial()
     {
         placeBlockTutorial.SetActive(false);
         continueTutorial.SetActive(true);
+        currentTutorialState = TutorialStates.CONTINUE;
     }
 
     public void StartWaitTutorial()
     {
         continueTutorial.SetActive(false);
         waitTutorial.SetActive(true);
+        currentTutorialState = TutorialStates.WAIT;
     }
 
     public void StartCompletTutorial()
     {
-        continueTutorial.SetActive(false);
+        waitTutorial.SetActive(false);
         completeTutorial.SetActive(true);
+        currentTutorialState = TutorialStates.CONTINUE;
     }
 
     public void EndTutorial()

@@ -6,6 +6,8 @@ public class Stackable : MonoBehaviour
 {
     [SerializeField]
     private bool inBounds = false;
+    [SerializeField]
+    private bool inBuildZone = false;
 
     private Rigidbody rigidbody;
     private Collider collider;
@@ -39,6 +41,10 @@ public class Stackable : MonoBehaviour
         {
             inBounds = false;
         }
+        if (other.gameObject.GetComponent<BuildSpace>())
+        {
+            inBuildZone = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -47,6 +53,10 @@ public class Stackable : MonoBehaviour
         {
             inBounds = true;
         }
+        if (other.gameObject.GetComponent<BuildSpace>())
+        {
+            inBuildZone = false;
+        }
     }
 
     // Surface if the item is currently held
@@ -54,6 +64,9 @@ public class Stackable : MonoBehaviour
 
     // Surface if the item is in bounds
     public bool CheckInBounds() => inBounds;
+
+    // Surface if the item is in the designated build area
+    public bool CheckInBuildZone() => inBuildZone;
 
     // Make this grabbable unmovible and not grabbable
     public void MakeStatic()
@@ -76,5 +89,6 @@ public class Stackable : MonoBehaviour
     {
         this.transform.position = startingPosition;
         this.transform.rotation = startingRotation;
+        this.rigidbody.velocity = Vector3.zero;
     }
 }
