@@ -35,18 +35,24 @@ public class LevelLoader : MonoBehaviour
         while (ovrScreenFade.IsTransitioning())
         {
             yield return null;
-            Debug.Log("wait for fade");
         }
 
         // Swap scenes
         AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(currentScene);
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(currentScene.buildIndex + 1);
-        while (unloadOp != null && loadOp != null && !unloadOp.isDone && !loadOp.isDone)
+        while (unloadOp != null && !unloadOp.isDone )
         {
             yield return null;
         }
+
+        while (loadOp != null && !loadOp.isDone)
+        {
+            yield return null;
+        }
+
         // Set connections for new stackables
         gameManager.ResetConnections();
+
         // Fade in
         ovrScreenFade.FadeIn();
         while (ovrScreenFade.IsTransitioning())

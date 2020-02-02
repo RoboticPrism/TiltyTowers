@@ -33,8 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        stackables = GameObject.FindObjectsOfType<Stackable>();
-        resetPlunger = GameObject.FindObjectOfType<VRButton>();
+        ResetConnections();
     }
 
     // Update is called once per frame
@@ -135,12 +134,12 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
-        Debug.Log("Reset");
         foreach (Stackable stackable in stackables)
         {
             stackable.Reset();
         }
         resetPlunger.Reset();
+        currentState = GameStates.BUILD;
     }
 
     public void ResetConnections()
