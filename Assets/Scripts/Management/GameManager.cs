@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private LevelLoader levelLoader;
 
+    [SerializeField]
+    private NextLevelButton nextLevelButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -124,7 +127,7 @@ public class GameManager : MonoBehaviour
         }
         currentTimerSeconds = 0f;
         currentState = GameStates.SUCCESS;
-        levelLoader.NextScene();
+        nextLevelButton.gameObject.SetActive(true);
     }
 
     void ToFailedState()
@@ -146,5 +149,7 @@ public class GameManager : MonoBehaviour
     {
         stackables = GameObject.FindObjectsOfType<Stackable>();
         resetPlunger = GameObject.FindObjectOfType<VRButton>();
+        // weird hack to find inactive objects
+        nextLevelButton = Resources.FindObjectsOfTypeAll<NextLevelButton>()[0];
     }
 }
