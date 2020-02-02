@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour
         {
             stackable.GetComponent<Rigidbody>().AddExplosionForce(explosionStrenght, buildingBase.GetExplosionPosition().position, explosionRadius, 3f);
         }
+        buildingBase.CreateExplosion();
         StartCoroutine("ResetCoroutine");
     }
 

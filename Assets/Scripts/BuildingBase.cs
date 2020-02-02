@@ -6,6 +6,8 @@ public class BuildingBase : MonoBehaviour
 {
     [SerializeField]
     private Transform explosionPosition;
+    [SerializeField]
+    private GameObject explosionPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +24,10 @@ public class BuildingBase : MonoBehaviour
     public Transform GetExplosionPosition()
     {
         return explosionPosition;
+    }
+
+    public void CreateExplosion()
+    {
+        Instantiate(explosionPrefab, explosionPosition.transform.position, explosionPosition.transform.rotation);
     }
 }

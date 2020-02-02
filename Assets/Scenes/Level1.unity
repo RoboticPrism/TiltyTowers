@@ -882,6 +882,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefaultBuildSpace
       objectReference: {fileID: 0}
+    - target: {fileID: 7932311798693230558, guid: 726e1984e57624544bcbb9a309a10224,
+        type: 3}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 2031488817384729729, guid: 8155b1811b912864a9a37cd2bd0bc93f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 726e1984e57624544bcbb9a309a10224, type: 3}
 --- !u!1001 &6522456913478063578
@@ -959,7 +965,7 @@ PrefabInstance:
     - target: {fileID: 2969495028153507881, guid: 4a127ab0cab9ee64982918a01e61a691,
         type: 3}
       propertyPath: field of view
-      value: 120
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2969495028967386089, guid: 4a127ab0cab9ee64982918a01e61a691,
         type: 3}
@@ -1008,7 +1014,7 @@ PrefabInstance:
     - target: {fileID: 7744160354703875473, guid: 4a0ed5211212cfa4cbe5db538eb4fe3d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7744160354703875475, guid: 4a0ed5211212cfa4cbe5db538eb4fe3d,
         type: 3}
